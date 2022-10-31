@@ -1,15 +1,4 @@
-const mergeSort = (array) => {
-  if (array.length < 2) return array;
-
-  //split array
-  const mid = Math.round(array.length / 2);
-  const leftArr = array.slice(0, mid);
-  const rightArr = array.slice(mid, array.length);
-
-  //sort split
-  const sortedLeft = mergeSort(leftArr);
-  const sortedRight = mergeSort(rightArr);
-
+const merge = (sortedLeft, sortedRight) => {
   const newArr = [];
 
   // sort two sorted arrays
@@ -30,6 +19,18 @@ const mergeSort = (array) => {
   }
 
   return newArr;
+};
+
+const mergeSort = (array) => {
+  if (array.length < 2) return array;
+
+  //split array
+  const mid = Math.round(array.length / 2);
+  const leftArr = array.slice(0, mid);
+  const rightArr = array.slice(mid, array.length);
+
+  //sort split
+  return merge(mergeSort(leftArr), mergeSort(rightArr));
 };
 
 const test = [9, 3, 5, 7, 4, 8, 6, 2];
